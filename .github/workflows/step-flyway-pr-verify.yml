@@ -36,8 +36,4 @@ jobs:
 
       - name: Flyway migrate
         run: >
-          docker compose up -d
-
-      - name: Flyway get logs
-        run: >
-          docker compose logs | grep ERROR; echo $?;
+          docker compose up -d && docker compose logs | grep ERROR; echo $?;
