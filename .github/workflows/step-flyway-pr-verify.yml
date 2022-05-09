@@ -40,4 +40,4 @@ jobs:
 
       - name: Flyway get logs
         run: >
-          docker compose logs | grep ERROR || -1
+          docker compose logs | grep ERROR; echo $?;
