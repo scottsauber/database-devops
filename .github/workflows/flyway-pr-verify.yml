@@ -11,7 +11,7 @@ on:
 jobs:
   flyway-migrate-dev:
     name: Flyway PR Verify
-    uses: scottsauber/database-devops/.github/workflows/step-flyway-pr-verify.yml@test-pr
+    uses: scottsauber/database-devops/.github/workflows/step-flyway-pr-verify.yml@main
     with:
       env: dev
     secrets:
