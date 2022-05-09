@@ -1,0 +1,39 @@
+name: "Step - Flyway Migrate"
+
+on:
+  workflow_call:
+    secrets:
+      postgres_username:
+        required: true
+      postgres_password:
+        required: true
+      postgres_url:
+        required: true
+    inputs:
+      env:
+        required: true
+        type: string
+
+jobs:
+  flyway-migrate:
+    name: Flyway Migrate
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1.0.0
+
+      - name: Flyway validate
+        run: >
+          docker run -v $(pwd)/sql/:/flyway/sql flyway/flyway:8.5-alpine
+          -url=jdbc:postgresql://${{ secrets.postgres_url }}:5432/a_site_to_order_stuff_${{ inputs.env }}?sslmode=require
+          -user=${{ secrets.postgres_username }}
+          -password=${{ secrets.postgres_password }}
+          -connectRetries=1
+          -validateMigrationNaming=true
+          validate
+
+      - name: Flyway migrate
+        run: >
+          docker compose up -d
+          docker-compose logs | grep ERROR || -1
