@@ -1,0 +1,31 @@
+name: "Flyway CI"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "sql/**"
+      - ".github/workflows/*flyway*.yml"
+
+jobs:
+  flyway-migrate-dev:
+    name: Flyway Migrate Dev
+    uses: scottsauber/database-devops/.github/workflows/step-flyway-migrate.yml@main
+    with:
+      env: dev
+    secrets:
+      postgres_username: ${{ secrets.POSTGRES_USERNAME_DEV }}
+      postgres_password: ${{ secrets.POSTGRES_PASSWORD_DEV }}
+      postgres_url: ${{ secrets.POSTGRES_URL_DEV }}
+
+  flyway-migrate-prod:
+    name: Flyway Migrate Prod
+    uses: scottsauber/database-devops/.github/workflows/step-flyway-migrate.yml@main
+    needs: flyway-migrate-dev
+    with:
+      env: prod
+    secrets:
+      postgres_username: ${{ secrets.POSTGRES_USERNAME_DEV }}
+      postgres_password: ${{ secrets.POSTGRES_PASSWORD_DEV }}
+      postgres_url: ${{ secrets.POSTGRES_URL_DEV }}
