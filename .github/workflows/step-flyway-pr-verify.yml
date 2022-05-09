@@ -36,5 +36,4 @@ jobs:
 
       - name: Flyway migrate
         run: >
-          docker compose up -d
-          docker compose logs | grep ERROR || -1
+          docker compose up --force-recreate -d && sleep 5 && docker compose logs && docker compose logs | (! grep ERROR &>/dev/null)
