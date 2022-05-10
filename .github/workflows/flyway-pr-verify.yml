@@ -1,4 +1,4 @@
-name: "Flyway CI"
+name: "Flyway PR"
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ on:
       - ".github/workflows/*flyway*.yml"
 
 jobs:
-  flyway-migrate-dev:
+  flyway-pr-dev:
     name: Flyway PR Verify
     uses: scottsauber/database-devops/.github/workflows/step-flyway-pr-verify.yml@main
     with:
