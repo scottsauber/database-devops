@@ -1,6 +1,6 @@
 # database-devops
 
-Example repo for my Database DevOps talk, illustrating Flyway with GitHub Actions.
+Example repo for my Database DevOps talk, illustrating Flyway with GitHub Actions. Slides for the talk can be found [here](https://github.com/scottsauber/talks/tree/main/2022-05-11-NDCLondon-DatabaseDevOps).
 
 ## Running Locally
 
