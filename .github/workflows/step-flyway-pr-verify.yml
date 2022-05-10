@@ -1,4 +1,4 @@
-name: "Step - Flyway Migrate"
+name: "Step - Flyway PR Verify"
 
 on:
   workflow_call:
