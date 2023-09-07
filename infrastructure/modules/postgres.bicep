@@ -13,7 +13,7 @@ resource pg_devops_database 'Microsoft.DBforPostgreSQL/flexibleServers@2022-12-0
   name: 'pg-database-devops-${environment}'
   location: resourceGroupLocation
   sku: {
-    name: 'Burstable_B1ms_v1'
+    name: 'Standard_B1ms'
     tier: 'Burstable'
   }
   properties: {

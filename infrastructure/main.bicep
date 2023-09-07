@@ -12,7 +12,7 @@ param administratorLoginPassword string
 resource rg_devops_database 'Microsoft.Resources/resourceGroups@2022-09-01' = {
   name: 'rg-database-devops-${environment}'
   #disable-next-line no-hardcoded-location
-  location: 'centralus'
+  location: 'eastus'
 }
 
 module postgresModule './modules/postgres.bicep' = {
