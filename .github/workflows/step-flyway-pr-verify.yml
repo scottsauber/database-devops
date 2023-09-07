@@ -25,7 +25,7 @@ jobs:
 
       - name: Flyway validate
         run: >
-          docker run -v $(pwd)/sql/:/flyway/sql flyway/flyway:8.5-alpine
+          docker run -v $(pwd)/sql/:/flyway/sql flyway/flyway:9.22-alpine
           -url=jdbc:postgresql://${{ secrets.postgres_url }}:5432/a_site_to_order_stuff?sslmode=require
           -user=${{ secrets.postgres_username }}
           -password=${{ secrets.postgres_password }}
