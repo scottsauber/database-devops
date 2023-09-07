@@ -1,1 +1,0 @@
-ALTER TABLE customers ADD passport_number varchar(1000)
