@@ -31,7 +31,6 @@ jobs:
           -password=${{ secrets.postgres_password }}
           -connectRetries=1
           -validateMigrationNaming=true
-          -ignorePendingMigrations=true
           validate
 
       - name: Flyway migrate
