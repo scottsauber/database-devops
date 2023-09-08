@@ -1,0 +1,38 @@
+name: "Step - Bicep Deploy"
+
+on:
+  workflow_call:
+    secrets:
+      ADMINISTRATOR_LOGIN:
+        required: true
+      ADMINISTRATOR_LOGIN_PASSWORD:
+        required: true
+      AZURE_CREDENTIALS:
+        required: true
+    inputs:
+      ENV:
+        required: true
+        type: string
+
+jobs:
+  bicep-deploy:
+    name: Bicep Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@1.0.0
+
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep
+        uses: azure/arm-deploy@v1
+        with:
+          template: ./infrastructure/main.bicep
+          scope: "subscription"
+          region: "eastus"
+          deploymentName: "database-devops"
+          parameters: "environment=${{ inputs.ENV }} administratorLogin=${{ secrets.ADMINISTRATOR_LOGIN}} administratorLoginPassword=${{ secrets.ADMINISTRATOR_LOGIN_PASSWORD}}"
