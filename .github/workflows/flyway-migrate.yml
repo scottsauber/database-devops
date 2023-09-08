@@ -26,6 +26,6 @@ jobs:
     with:
       env: prod
     secrets:
-      postgres_username: ${{ secrets.POSTGRES_USERNAME_DEV }}
-      postgres_password: ${{ secrets.POSTGRES_PASSWORD_DEV }}
-      postgres_url: ${{ secrets.POSTGRES_URL_DEV }}
+      postgres_username: ${{ secrets.POSTGRES_USERNAME_PROD }}
+      postgres_password: ${{ secrets.POSTGRES_PASSWORD_PROD }}
+      postgres_url: ${{ secrets.POSTGRES_URL_PROD }}
