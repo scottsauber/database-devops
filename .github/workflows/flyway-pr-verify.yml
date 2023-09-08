@@ -11,7 +11,7 @@ on:
 jobs:
   flyway-pr-dev:
     name: Flyway PR Verify
-    uses: scottsauber/database-devops/.github/workflows/step-flyway-pr-verify.yml@main
+    uses: ./.github/workflows/step-flyway-pr-verify.yml
     with:
       env: dev
     secrets:
