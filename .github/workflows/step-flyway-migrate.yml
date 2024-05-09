@@ -2,13 +2,6 @@ name: "Step - Flyway Migrate"
 
 on:
   workflow_call:
-    secrets:
-      postgres_username:
-        required: true
-      postgres_password:
-        required: true
-      postgres_url:
-        required: true
     inputs:
       env:
         required: true
@@ -26,9 +19,9 @@ jobs:
       - name: Flyway migrate
         run: >
           docker run -v $(pwd)/sql/:/flyway/sql flyway/flyway:9.22-alpine
-          -url=jdbc:postgresql://${{ secrets.postgres_url }}:5432/a_site_to_order_stuff?sslmode=require
-          -user=${{ secrets.postgres_username }}
-          -password=${{ secrets.postgres_password }}
+          -url=jdbc:postgresql://db:5432/a_site_to_order_stuff?sslmode=require
+          -user=postgres
+          -password=postgres
           -connectRetries=1
           -validateMigrationNaming=true
           migrate
